@@ -5,7 +5,7 @@ try {
 
   (require('electron').webFrame.top.context || window).eval(`
   (async function() {
-    window.gmUntethered = '2.2.1';
+    window.gmUntethered = '2.2.2';
 
     let el = document.getElementsByClassName('fixClipping-3qAKRb')[0];
     if (el !== undefined) el.style.backgroundColor = '#050505';
@@ -124,7 +124,7 @@ try {
     
     await this.cspBypasser.init();
 
-    const code = this.cspBypasser.text('https://gitdab.com/duck/GooseMod/raw/branch/master/src/inject.js');
+    const code = this.cspBypasser.text('https://raw.githubusercontent.com/GooseMod/Injector/master/src/inject.js');
 
     if (el2 !== undefined) el2.innerHTML += \`<br>Ready\`;
     
