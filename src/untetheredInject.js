@@ -5,7 +5,7 @@ try {
 
   (require('electron').webFrame.top.context || window).eval(`
   (async function() {
-    window.gmUntethered = '2.2.2';
+    window.gmUntethered = '2.3.0';
 
     let el = document.getElementsByClassName('fixClipping-3qAKRb')[0];
     if (el !== undefined) el.style.backgroundColor = '#050505';
@@ -26,10 +26,10 @@ try {
       frame: document.createElement('iframe'),
       
       init: async () => {
-        this.cspBypasser.frame.src = \`\${location.origin}/api/gateway\`;
+        this.cspBypasser.frame.src = 'discord:';
         document.body.appendChild(this.cspBypasser.frame);
         
-        await awaitIframe(this.cspBypasser.frame);
+        //await awaitIframe(this.cspBypasser.frame);
         
         let script = document.createElement('script');
         script.type = 'text/javascript';
