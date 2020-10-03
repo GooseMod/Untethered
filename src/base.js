@@ -5,7 +5,9 @@ try {
 
   (require('electron').webFrame.top.context || window).eval(`
   (async function() {
-    window.gmUntetheredBase = '1.0.1';
+    window.gmUntetheredBase = '1.0.2';
+
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     this.cspBypasser = {
       frame: document.createElement('iframe'),
