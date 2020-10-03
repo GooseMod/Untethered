@@ -5,7 +5,7 @@ try {
 
   (require('electron').webFrame.top.context || window).eval(`
   (async function() {
-    window.gmUntetheredBase = '1.0.0';
+    window.gmUntetheredBase = '1.0.1';
 
     this.cspBypasser = {
       frame: document.createElement('iframe'),
@@ -110,8 +110,6 @@ try {
     await this.cspBypasser.init();
 
     const code = await this.cspBypasser.text('https://goosemod-api.netlify.app/untethered/untetheredInject.js', false);
-
-    if (el2 !== undefined) el2.innerHTML += \`<br>Ready\`;
     
     while (true) {
       if (document.querySelector('button[aria-label="User Settings"]') !== null) break;
