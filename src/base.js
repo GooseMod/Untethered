@@ -5,7 +5,7 @@ try {
 
   (require('electron').webFrame.top.context || window).eval(`
   (async function() {
-    window.gmUntetheredBase = '1.0.2';
+    window.gmUntetheredBase = '1.1.0';
 
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -112,13 +112,7 @@ try {
     await this.cspBypasser.init();
 
     const code = await this.cspBypasser.text('https://goosemod-api.netlify.app/untethered/untetheredInject.js', false);
-    
-    while (true) {
-      if (document.querySelector('button[aria-label="User Settings"]') !== null) break;
-      
-      await sleep(50);
-    }
-    
+
     (async function(cspBypasser, code) { eval(code); })(this.cspBypasser, code);
   }).bind({})();`);
 } catch (e) { console.error(e); }
