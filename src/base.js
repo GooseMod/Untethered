@@ -1,21 +1,12 @@
-(async function() {
-    window.gmUntethered = '3.0.0';
+try {
+  if (typeof require === 'undefined') { // Web
+    require = () => ({ webFrame: { top: { context: undefined } } });
+  }
 
-    let el = document.getElementsByClassName('fixClipping-3qAKRb')[0];
-    if (el !== undefined) el.style.backgroundColor = '#050505';
+  (require('electron').webFrame.top.context || window).eval(`
+  (async function() {
+    window.gmUntetheredBase = '1.0.0';
 
-    let el2 = document.getElementsByClassName('tip-2cgoli')[0];
-    if (el2 !== undefined) el2.innerHTML += `<br><br>GooseMod Untethered v\${window.gmUntethered}`;
-
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-    const awaitIframe = (iframe) => {
-      return new Promise((res) => {
-        iframe.addEventListener("load", function() {
-          res();
-        });
-      })
-    };
-    
     this.cspBypasser = {
       frame: document.createElement('iframe'),
   
@@ -28,11 +19,11 @@
         let script = document.createElement('script');
         script.type = 'text/javascript';
   
-        let code = `
+        let code = \`
         window.addEventListener('message', async (e) => {
           const {url, type, useCORSProxy} = e.data;
   
-          const proxyURL = useCORSProxy ? \`https://cors-anywhere.herokuapp.com/\${url}\` : url;
+          const proxyURL = useCORSProxy ? \\\`https://cors-anywhere.herokuapp.com/\\\${url}\\\` : url;
   
           if (type === 'img') {
             let canvas = document.createElement('canvas');
@@ -59,7 +50,7 @@
           });
   
           e.source.postMessage(type === 'json' ? await req.json() : (type === 'text' ? await req.text() : await req.blob()));
-        }, false);`;
+        }, false);\`;
   
         script.appendChild(document.createTextNode(code));
   
@@ -118,9 +109,9 @@
     
     await this.cspBypasser.init();
 
-    const code = await this.cspBypasser.text('https://goosemod-api.netlify.app/inject.js', false);
+    const code = await this.cspBypasser.text('https://goosemod-api.netlify.app/untethered/untetheredInject.js', false);
 
-    if (el2 !== undefined) el2.innerHTML += `<br>Ready`;
+    if (el2 !== undefined) el2.innerHTML += \`<br>Ready\`;
     
     while (true) {
       if (document.querySelector('button[aria-label="User Settings"]') !== null) break;
@@ -129,4 +120,5 @@
     }
     
     (async function(cspBypasser, code) { eval(code); })(this.cspBypasser, code);
-  }).bind({})();
+  }).bind({})();`);
+} catch (e) { console.error(e); }
