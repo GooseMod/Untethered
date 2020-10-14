@@ -1,5 +1,5 @@
 (async function() {
-  window.gmUntethered = '3.1.0';
+  window.gmUntethered = '3.1.1';
   
   let el = document.getElementsByClassName('fixClipping-3qAKRb')[0];
   if (el !== undefined) el.style.backgroundColor = '#050505';
@@ -13,10 +13,10 @@
     frame: document.createElement('iframe'),
   
     init: async () => {
-      globalThis.cspBypasser.frame.src = 'discord:';
-      document.body.appendChild(globalThis.cspBypasser.frame);
+      this.cspBypasser.frame.src = 'discord:';
+      document.body.appendChild(this.cspBypasser.frame);
   
-      //await awaitIframe(globalThis.cspBypasser.frame);
+      //await awaitIframe(this.cspBypasser.frame);
   
       let script = document.createElement('script');
       script.type = 'text/javascript';
@@ -58,7 +58,7 @@
   
       script.appendChild(document.createTextNode(code));
   
-      globalThis.cspBypasser.frame.contentDocument.head.appendChild(script);
+      this.cspBypasser.frame.contentDocument.head.appendChild(script);
     },
   
     runCode: (code) => {
@@ -67,12 +67,12 @@
   
       script.appendChild(document.createTextNode(code));
   
-      globalThis.cspBypasser.frame.contentDocument.head.appendChild(script);
+      this.cspBypasser.frame.contentDocument.head.appendChild(script);
     },
   
     json: (url, useCORSProxy = true) => {
       return new Promise((res) => {
-        globalThis.cspBypasser.frame.contentWindow.postMessage({url, type: 'json', useCORSProxy});
+        this.cspBypasser.frame.contentWindow.postMessage({url, type: 'json', useCORSProxy});
   
         window.addEventListener('message', async (e) => {
           if (e.data.verify !== url) return;
@@ -84,7 +84,7 @@
   
     text: (url, useCORSProxy = true) => {
       return new Promise((res) => {
-        globalThis.cspBypasser.frame.contentWindow.postMessage({url, type: 'text', useCORSProxy});
+        this.cspBypasser.frame.contentWindow.postMessage({url, type: 'text', useCORSProxy});
   
         window.addEventListener('message', async (e) => {
           if (e.data.verify !== url) return;
@@ -96,7 +96,7 @@
   
     blob: (url, useCORSProxy = true) => {
       return new Promise((res) => {
-        globalThis.cspBypasser.frame.contentWindow.postMessage({url, type: 'blob', useCORSProxy});
+        this.cspBypasser.frame.contentWindow.postMessage({url, type: 'blob', useCORSProxy});
   
         window.addEventListener('message', async (e) => {
           if (e.data.verify !== url) return;
@@ -108,7 +108,7 @@
   
     image: (url, useCORSProxy = true) => {
       return new Promise((res) => {
-        globalThis.cspBypasser.frame.contentWindow.postMessage({url, type: 'img', useCORSProxy});
+        this.cspBypasser.frame.contentWindow.postMessage({url, type: 'img', useCORSProxy});
   
         window.addEventListener('message', async (e) => {
           if (e.data.verify !== url) return;
