@@ -1,5 +1,5 @@
 (async function() {
-  window.gmUntethered = '3.1.1';
+  window.gmUntethered = '3.1.2';
   
   let el = document.getElementsByClassName('fixClipping-3qAKRb')[0];
   if (el !== undefined) el.style.backgroundColor = '#050505';
@@ -10,14 +10,12 @@
   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   
   this.cspBypasser = {
-    frame: document.createElement('iframe'),
+    frame: document.createElement('object'),
   
     init: async () => {
-      this.cspBypasser.frame.src = 'discord:';
+      goosemodScope.cspBypasser.frame.data = location.origin;
       document.body.appendChild(this.cspBypasser.frame);
-  
-      //await awaitIframe(this.cspBypasser.frame);
-  
+
       let script = document.createElement('script');
       script.type = 'text/javascript';
   
