@@ -1,5 +1,5 @@
 (async function() {
-  window.gmUntethered = '3.1.2';
+  window.gmUntethered = '3.1.3';
   
   let el = document.getElementsByClassName('fixClipping-3qAKRb')[0];
   if (el !== undefined) el.style.backgroundColor = '#050505';
@@ -13,7 +13,7 @@
     frame: document.createElement('object'),
   
     init: async () => {
-      goosemodScope.cspBypasser.frame.data = location.origin;
+      this.cspBypasser.frame.data = location.origin;
       document.body.appendChild(this.cspBypasser.frame);
 
       let script = document.createElement('script');
