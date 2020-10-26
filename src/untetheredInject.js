@@ -1,5 +1,6 @@
 (async function() {
-  window.gmUntethered = '3.1.3';
+const fn = async () => {
+  window.gmUntethered = '4.0.0';
   
   let el = document.getElementsByClassName('fixClipping-3qAKRb')[0];
   if (el !== undefined) el.style.backgroundColor = '#050505';
@@ -15,6 +16,8 @@
     init: async () => {
       this.cspBypasser.frame.data = location.origin;
       document.body.appendChild(this.cspBypasser.frame);
+
+      //await sleep(100);
 
       let script = document.createElement('script');
       script.type = 'text/javascript';
@@ -55,7 +58,7 @@
       });`;
   
       script.appendChild(document.createTextNode(code));
-  
+  ``
       this.cspBypasser.frame.contentDocument.head.appendChild(script);
     },
   
@@ -124,10 +127,20 @@
   if (el2 !== undefined) el2.innerHTML += `<br>Ready`;
   
   while (true) {
-    if (document.querySelector('button[aria-label="User Settings"]') !== null) break;
+    if (document.querySelector('button[aria-label="User Settings"]') !== null && window.webpackJsonp !== undefined) break;
     
     await sleep(50);
   }
   
   (async function(code) { eval(code); })(code);
+};
+
+let parent = undefined;
+if (typeof require !== 'undefined') {
+  parent = require('electron').webFrame.top.context;
+} else {
+  parent = window;
+}
+
+parent.eval(`(${fn.toString()})()`);
 }).bind({})();
