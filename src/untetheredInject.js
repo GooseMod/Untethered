@@ -14,7 +14,7 @@
   if (el2 !== undefined) el2.innerHTML += `<br>Ready`;
   
   while (true) {
-    if (document.querySelector('button[aria-label="User Settings"]') !== null && window.webpackJsonp !== undefined) break;
+    if (window.webpackJsonp !== undefined) break;
     
     await sleep(50);
   }
