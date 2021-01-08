@@ -39,8 +39,8 @@
   if (el2 !== undefined) el2.innerHTML += `<br>Ready`;
   
   while (true) {
-    if (window.webpackJsonp !== undefined) break;
-    
+    if (document.querySelectorAll('.flex-1xMQg5.flex-1O1GKY.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignStretch-DpGPf3.noWrap-3jynv6 > [type="button"]:last-child').length !== 0 && window.webpackJsonp !== undefined) break;
+
     await sleep(50);
   }
   
