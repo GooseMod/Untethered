@@ -15,9 +15,18 @@
     return r;
   }
 
+  let injected = false;
+
+  document.addEventListener('keydown', (e) => {
+    if (injected) return;
+
+    if (e.code === 'KeyH') {
+      window.gmSafeMode = true;
+    }
+  });
+
   // Re-make window.localStorage for Untethered settings
   Object.defineProperty(window, 'localStorage', getLocalStoragePropertyDescriptor());
-
 
   const branchURLs = {
     'release': 'https://goosemod-api.netlify.app/inject.js',
@@ -26,9 +35,6 @@
 
   const branch = localStorage.getItem('goosemodUntetheredBranch') || 'release';
 
-  // let el = document.getElementsByClassName('fixClipping-3qAKRb')[0];
-  // if (el !== undefined) el.style.backgroundColor = '#050505';
-  
   let el2 = document.getElementsByClassName('tip-2cgoli')[0];
   if (el2 !== undefined) el2.innerHTML += `<br><br>GooseMod Untethered v${window.gmUntethered}`;
   
@@ -43,6 +49,8 @@
 
     await sleep(50);
   }
+  
+  injected = true;
   
   eval(code);
 }).bind({})();
