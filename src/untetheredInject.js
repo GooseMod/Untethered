@@ -30,7 +30,7 @@
 
   const branchURLs = {
     'release': 'https://goosemod-api.netlify.app/inject.js',
-    'dev': 'https://raw.githack.com/GooseMod/Injector/master/dist/index.js'
+    'dev': `https://raw.githack.com/GooseMod/Injector/master/dist/index.js?_=${Date.now()}`
   };
 
   const branch = localStorage.getItem('goosemodUntetheredBranch') || 'release';
