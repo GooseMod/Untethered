@@ -1,5 +1,5 @@
 (async function() {
-  window.gmUntethered = '5.4.1';
+  window.gmUntethered = '5.4.2';
 
   // Bypass to get Local Storage (Discord block / remove it) - Source / credit: https://stackoverflow.com/questions/52509440/discord-window-localstorage-is-undefined-how-to-get-access-to-the-localstorage
   function getLocalStoragePropertyDescriptor() {
@@ -30,7 +30,7 @@
 
   const branchURLs = {
     'release': 'https://goosemod-api.netlify.app/inject.js',
-    'dev': `https://raw.githack.com/GooseMod/Injector/master/dist/index.js?_=${Date.now()}`
+    'dev': `https://raw.githubusercontent.com/GooseMod/GooseMod/master/dist/index.js?_=${Date.now()}`
   };
 
   const branch = localStorage.getItem('goosemodUntetheredBranch') || 'release';
