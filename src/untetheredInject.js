@@ -1,5 +1,5 @@
 (async function() {
-  window.gmUntethered = '5.4.2';
+  window.gmUntethered = '5.4.3';
 
   // Bypass to get Local Storage (Discord block / remove it) - Source / credit: https://stackoverflow.com/questions/52509440/discord-window-localstorage-is-undefined-how-to-get-access-to-the-localstorage
   function getLocalStoragePropertyDescriptor() {
