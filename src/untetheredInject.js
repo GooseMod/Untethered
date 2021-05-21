@@ -1,5 +1,5 @@
 (async function() {
-  window.gmUntethered = '5.4.3';
+  window.gmUntethered = '5.4.4';
 
   // Bypass to get Local Storage (Discord block / remove it) - Source / credit: https://stackoverflow.com/questions/52509440/discord-window-localstorage-is-undefined-how-to-get-access-to-the-localstorage
   function getLocalStoragePropertyDescriptor() {
@@ -14,16 +14,6 @@
 
     return r;
   }
-
-  let injected = false;
-
-  document.addEventListener('keydown', (e) => {
-    if (injected) return;
-
-    if (e.code === 'KeyH') {
-      window.gmSafeMode = true;
-    }
-  });
 
   // Re-make window.localStorage for Untethered settings
   Object.defineProperty(window, 'localStorage', getLocalStoragePropertyDescriptor());
@@ -49,8 +39,6 @@
 
     await sleep(50);
   }
-  
-  injected = true;
-  
+
   eval(code);
 }).bind({})();
